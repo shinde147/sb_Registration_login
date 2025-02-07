@@ -22,11 +22,7 @@ public class RegisterController {
 		return service.doregistration(user);
 	}
 	
-	@PostMapping("login")
-	public String login(@RequestBody String username,String password) {
-		return service.login( username, password);
-		
-	}
+
 	
 	
 

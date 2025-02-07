@@ -34,14 +34,6 @@ public class RegisterService {
 		
 	}
 
-	public String login(String username, String password) {
-	boolean	islogin = dao.login(username,password);
-	if (islogin) {
-		return "login successfull";
-	}else {
-		return " login failed..";
-	}
-		
 	}
 
-}
+

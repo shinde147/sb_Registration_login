@@ -21,34 +21,6 @@ public class RegisterDao {
 		session.beginTransaction().commit();
 		return true;
 	}
-	public boolean login(String username, String password) {
-		
-		 Session session = null;
-	        boolean isAuthenticated = false;
-	        try {
-	           
-	            session = factory.openSession();
-	            Criteria criteria = session.createCriteria(User.class);
-	            
-	            // Add restrictions for both username and password
-	            criteria.add(Restrictions.eq("username", username));
-	            criteria.add(Restrictions.eq("password", password)); 
-
-	            // Check if a matching user exists
-	            if (criteria.uniqueResult() != null) {
-	                isAuthenticated = true;
-	            }
-
-	        } catch (Exception e) {
-	           System.out.println("login failed..");
-	        } finally {
-	            if (session != null) {
-	                session.close();
-	            }
-	        }
-
-	        return isAuthenticated;
-	    }
 
 		
 		
