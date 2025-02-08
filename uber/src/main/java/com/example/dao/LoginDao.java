@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,26 +14,23 @@ import com.example.entity.User;
 @Repository
 public class LoginDao {
 
-	@Autowired
-	SessionFactory factory;
-	public boolean doLogin(String email, String encPass) {
-		Session session = factory.openSession();
-		Criteria criteria = session.createCriteria(User.class);
-		criteria.add(Restrictions.eq("email", email));
-		criteria.add(Restrictions.eq("password", encPass));
-		
-		User user=(User)criteria.uniqueResult();//unique value return jith hya donhi goshti match hotil
-		if (user!=null) {
-			return true;
-		}else {
-			return false;
-		}
-			
-			
-			
-		
-		
+		    @Autowired
+		    private SessionFactory sessionFactory;
+
+		    public boolean doLogin(String email, String encryptedPassword) {
+		        try (Session session = sessionFactory.openSession()) {
+		            Criteria criteria = session.createCriteria(User.class);
+		            criteria.add(Restrictions.eq("email", email));
+		            criteria.add(Restrictions.eq("password", encryptedPassword));
+
+		            List<User> result = criteria.list();
+
+		            return !result.isEmpty();  // If there's a match, return true
+		        }
+		    
+		    }
 		
 	}
 
-}
+
+

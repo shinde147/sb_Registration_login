@@ -20,6 +20,18 @@ public class User {
 	private LocalDateTime created;
 	private LocalDateTime modified;
 	
+	 private static final int MAX_ATTEMPTS = 3;
+	 private static int failedAttempts = 0;
+	
+	public static int getFailedAttempts() {
+		return failedAttempts;
+	}
+	public static void setFailedAttempts(int failedAttempts) {
+		User.failedAttempts = failedAttempts;
+	}
+	public static int getMaxAttempts() {
+		return MAX_ATTEMPTS;
+	}
 	public int getUserid() {
 		return userid;
 	}
